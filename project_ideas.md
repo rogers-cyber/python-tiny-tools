@@ -10,8 +10,18 @@ Perfect for:
 
 ---
 
+## 📖 Table of Contents
+- [🟢 Beginner Projects (1–50)](#🟢-beginner-projects-1–50)
+- [🟡 Intermediate Projects (51–120)](#🟡-intermediate-projects-51–120)
+- [🔴 Advanced Projects (121–180)](#🔴-advanced-projects-121–180)
+- [🚀 Fun / Creative / Unique (181–200)](#🚀-fun--creative--unique-181–200)
+- [📝 Contributing](#📝-contributing)
+- [❤️ Support This Project](#❤️-support-this-project)
+
+---
+
 ## 🟢 Beginner Projects (1–50)
-**Focus:** syntax, logic, files, small wins
+**Focus:** syntax, logic, files, small wins | **Skills:** CLI, basic Python, functions
 
 1. Number guessing game  
 2. Dice rolling simulator  
@@ -67,7 +77,7 @@ Perfect for:
 ---
 
 ## 🟡 Intermediate Projects (51–120)
-**Focus:** APIs, OOP, databases, automation
+**Focus:** APIs, OOP, databases, automation | **Skills:** Flask/Django, REST APIs, file handling, OOP
 
 51. Weather app (API)  
 52. News web scraper  
@@ -143,7 +153,7 @@ Perfect for:
 ---
 
 ## 🔴 Advanced Projects (121–180)
-**Focus:** systems, ML, scalability, architecture
+**Focus:** systems, ML, scalability, architecture | **Skills:** AI/ML, distributed systems, real-time, security
 
 121. Recommendation system  
 122. Search engine  
@@ -209,6 +219,7 @@ Perfect for:
 ---
 
 ## 🚀 Fun / Creative / Unique (181–200)
+**Focus:** creative coding, games, AI experiments | **Skills:** Python games, AI, visualization
 
 181. AI meme generator  
 182. Text-based RPG engine  
@@ -233,9 +244,25 @@ Perfect for:
 
 ---
 
+## 📝 Contributing
+
+We welcome **new project ideas** or improvements to existing ones!  
+
+To contribute:
+1. Fork the repository.
+2. Add your idea in the appropriate section (Beginner / Intermediate / Advanced / Fun).
+3. Submit a pull request describing your addition.
+4. Ensure the formatting matches the existing list.
+
+**Tips:**
+- Keep ideas short, clear, and focused on Python.
+- Add a **skill tag** if relevant (e.g., `API`, `ML`, `CLI`, `GUI`).
+
+---
+
 ## ❤️ Support This Project
 
-If this list helped you **learn, build, or teach Python**, consider sponsoring this project.
+If this list helped you **learn, build, or teach Python**, consider sponsoring this project.  
 
-Your support helps keep these resources **free, open, and growing** 🚀  
+Your support keeps these resources **free, open, and growing** 🚀  
 👉 Click the **Sponsor** button at the top of this repository.
