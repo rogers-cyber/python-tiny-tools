@@ -33,6 +33,21 @@ Each tool is designed to be:
 
 ---
 
+## 💬 Community & Discussions
+
+We have enabled **GitHub Discussions** for this repository — a central place for:
+
+- **Q&A** – Ask questions about Python tools or project ideas  
+- **Ideas** – Suggest new tiny tools or projects  
+- **Showcase** – Share projects you’ve built using these tools  
+- **Announcements** – Updates about new scripts, features, or resources  
+
+💬 Join the conversation here: [Discussions](https://github.com/rogers-cyber/python-tiny-tools/discussions)
+
+> ⚠️ Use **Issues** for bug reports and feature requests; Discussions is for general questions, brainstorming, and community interaction.  
+
+---
+
 ## 💖 Support This Project
 
 If these tools save you time or help you learn, consider sponsoring ❤️  
