@@ -16,7 +16,7 @@ This repository focuses on:
 - File & folder automation  
 - Data cleanup & transformation  
 - API helpers  
-- GUI & CLI utilities
+- GUI & CLI utilities  
 - Beginner → Advanced project ideas  
 - Clean, readable Python scripts  
 
@@ -64,6 +64,27 @@ Open an **issue** or submit a **PR** 🚀
 - [LICENSE](LICENSE) – Usage & distribution  
 - [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) – Bug & feature templates  
 - [.github/PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md) – PR template  
+
+---
+
+## 📄 License
+
+This repository is licensed under the **MIT License** — a short and permissive license that allows:
+
+**✅ Permissions:**  
+- Commercial use  
+- Modification  
+- Distribution  
+- Private use  
+
+**⚠️ Limitations:**  
+- No liability  
+- No warranty  
+
+**📜 Conditions:**  
+- Must include the original license and copyright notice in all copies or substantial portions of the software.  
+
+> ⚠️ This is **not legal advice**. For the full license text, see [LICENSE](LICENSE).
 
 ---
 
