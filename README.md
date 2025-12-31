@@ -63,7 +63,7 @@ Open an **issue** or submit a **PR** 🚀
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) – Community behavior  
 - [LICENSE](LICENSE) – Usage & distribution  
 - [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) – Bug & feature templates  
-- [.github/PULL_REQUEST_TEMPLATE](.github/PULL_REQUEST_TEMPLATE.md) – PR template  
+- [.github/PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md) – PR template  
 
 ---
 
