@@ -16,7 +16,7 @@ This repository focuses on:
 - File & folder automation  
 - Data cleanup & transformation  
 - API helpers  
-- CLI utilities  
+- GUI & CLI utilities
 - Beginner → Advanced project ideas  
 - Clean, readable Python scripts  
 
