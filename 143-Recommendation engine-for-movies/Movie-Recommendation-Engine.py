@@ -3,7 +3,7 @@ import webbrowser
 import tkinter as tk
 from tkinter import messagebox
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, Dict
+from typing import List, Tuple, Dict, Optional
 import requests
 import io
 from PIL import Image, ImageTk  # pip install pillow
@@ -26,12 +26,16 @@ poster_cache: Dict[str, ImageTk.PhotoImage] = {}
 @dataclass
 class Movie:
     title: str
+    imdb_id: str
     url: str
-    display_url: str
     description: str
     poster_url: str
+    genres: List[str] = None
+    director: str = ""
+    actors: List[str] = None
+    rating: float = 0.0
 
-# ---------------- SEARCH LOGIC ---------------- #
+# ---------------- SEARCH / FETCH ---------------- #
 def fetch_movies(query: str) -> List[Movie]:
     """Fetch movies from OMDb API matching the query."""
     movies: List[Movie] = []
@@ -51,13 +55,19 @@ def fetch_movies(query: str) -> List[Movie]:
                 timeout=10
             ).json()
 
+            genres = detail_resp.get("Genre", "")
+            actors = detail_resp.get("Actors", "")
             movies.append(
                 Movie(
                     title=detail_resp.get("Title", "Unknown"),
+                    imdb_id=imdb_id,
                     url=f"https://www.imdb.com/title/{imdb_id}/",
-                    display_url=f"imdb.com › {imdb_id}",
                     description=detail_resp.get("Plot", ""),
-                    poster_url=detail_resp.get("Poster", "")
+                    poster_url=detail_resp.get("Poster", ""),
+                    genres=[g.strip() for g in genres.split(",")] if genres else [],
+                    director=detail_resp.get("Director", ""),
+                    actors=[a.strip() for a in actors.split(",")] if actors else [],
+                    rating=float(detail_resp.get("imdbRating", 0.0)) if detail_resp.get("imdbRating") != "N/A" else 0.0
                 )
             )
     except requests.RequestException as e:
@@ -66,9 +76,27 @@ def fetch_movies(query: str) -> List[Movie]:
         messagebox.showerror("Error", str(e))
     return movies
 
-def rank_movies(query: str, movies: List[Movie]) -> List[Tuple[Movie, float]]:
-    """Placeholder ranking logic; can implement TF-IDF or other metrics."""
-    return [(m, 0.0) for m in movies]
+# ---------------- RECOMMENDATION ENGINE ---------------- #
+def recommend_movies(query: str, candidates: List[Movie], top_n=RESULTS_PER_PAGE) -> List[Tuple[Movie, float]]:
+    """
+    Simple content-based recommendation:
+    Scores movies by overlap with query in title, description, and genres
+    """
+    query_tokens = set(query.lower().split())
+    recommendations: List[Tuple[Movie, float]] = []
+
+    for movie in candidates:
+        text_to_match = " ".join([
+            movie.title.lower(),
+            movie.description.lower(),
+            " ".join(movie.genres or [])
+        ])
+        score = sum(1 for token in query_tokens if token in text_to_match)
+        recommendations.append((movie, score))
+
+    # Sort descending by score
+    recommendations.sort(key=lambda x: x[1], reverse=True)
+    return recommendations[:top_n]
 
 # ---------------- UI HELPERS ---------------- #
 def open_url(url: str):
@@ -104,14 +132,14 @@ def display_page():
         update_pagination()
         return
 
-    for idx, (movie, _) in enumerate(page_results):
-        # Movie Title
+    for idx, (movie, score) in enumerate(page_results):
+        # Title
         text.insert("end", f"{movie.title}\n", f"title_{idx}")
         text.tag_config(f"title_{idx}", foreground="#1a0dab", font=("Segoe UI", 14, "bold"))
         text.tag_bind(f"title_{idx}", "<Double-Button-1>", lambda e, url=movie.url: open_url(url))
 
-        # Display URL
-        text.insert("end", f"{movie.display_url}\n", f"url_{idx}")
+        # Display URL and IMDB rating
+        text.insert("end", f"{movie.url}  |  Rating: {movie.rating}\n", f"url_{idx}")
         text.tag_config(f"url_{idx}", foreground="#006621", font=("Segoe UI", 10))
 
         # Poster
@@ -120,8 +148,9 @@ def display_page():
             text.image_create("end", image=poster)
             text.insert("end", "\n")
 
-        # Description
-        text.insert("end", f"{movie.description}\n\n")
+        # Description & genres
+        genres = ", ".join(movie.genres or [])
+        text.insert("end", f"{movie.description}\nGenres: {genres}\n\n")
 
     text.configure(state="disabled")
     update_pagination()
@@ -149,24 +178,24 @@ def update_pagination():
 def perform_search():
     query = query_entry.get().strip()
     if not query:
-        messagebox.showwarning("Input Required", "Enter a movie title.")
+        messagebox.showwarning("Input Required", "Enter a movie title or keywords.")
         return
     threading.Thread(target=search_thread, args=(query,), daemon=True).start()
 
 def search_thread(query: str):
     global all_ranked_movies, current_page
     current_page = 1
-    all_movies = fetch_movies(query)
-    all_ranked_movies = rank_movies(query, all_movies)
+    candidates = fetch_movies(query)
+    all_ranked_movies = recommend_movies(query, candidates, top_n=50)  # get top 50 recommendations
     display_page()
 
 # ---------------- UI SETUP ---------------- #
-app = tb.Window(title="Live Movie Search", themename="flatly", size=(980, 720), resizable=(True, True))
+app = tb.Window(title="Movie Recommendation Engine", themename="flatly", size=(980, 720), resizable=(True, True))
 
 # Top frame
 top = tb.Frame(app, padding=15)
 top.pack(fill=tk.X)
-tb.Label(top, text="Search Movies (Live)", font=("Segoe UI", 16, "bold")).pack(anchor=tk.W)
+tb.Label(top, text="Movie Recommendation Engine", font=("Segoe UI", 16, "bold")).pack(anchor=tk.W)
 
 query_entry = tb.Entry(top, font=("Segoe UI", 12))
 query_entry.pack(fill=tk.X, pady=8)
