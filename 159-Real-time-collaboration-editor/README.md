@@ -95,7 +95,7 @@ python client_diff_floating_cursors.py
 ## 📝 License
 
 MIT License – Free to use, modify, and distribute.  
-See the [LICENSE](LICENSE) file for details.
+See the [LICENSE](../LICENSE) file for details.
 
 ---
 
