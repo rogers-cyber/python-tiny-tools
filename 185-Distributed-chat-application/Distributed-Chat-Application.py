@@ -11,10 +11,27 @@ from ttkbootstrap.constants import *
 from ttkbootstrap.widgets.scrolled import ScrolledText
 
 # ================== CONFIG ================== #
-HOST = "0.0.0.0"          # LAN / WAN support
 PORT = 5050
 BUFFER_SIZE = 4096
 DB_FILE = "chat.db"
+PASSWORD = "Secret123"  # Server password
+
+# ================== UTILITY: AUTO LAN IP ================== #
+def get_local_ip():
+    """
+    Detects LAN IP automatically.
+    Falls back to 127.0.0.1 if none found.
+    """
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # Doesn't actually send packets
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "127.0.0.1"
+
+HOST = get_local_ip()
 
 # ================== DATABASE ================== #
 def init_db():
@@ -32,7 +49,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 def save_message(sender, content, reply_to=None):
     conn = sqlite3.connect(DB_FILE)
     cur = conn.cursor()
@@ -42,7 +58,6 @@ def save_message(sender, content, reply_to=None):
     )
     conn.commit()
     conn.close()
-
 
 def load_history(limit=50):
     conn = sqlite3.connect(DB_FILE)
@@ -59,15 +74,19 @@ def load_history(limit=50):
 clients: Dict[socket.socket, str] = {}
 server_running = True
 
-
-def start_server(log_callback):
+def start_secure_server(log_callback):
     init_db()
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((HOST, PORT))
-    server.listen()
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        server.bind((HOST, PORT))
+    except Exception as e:
+        log_callback(f"Error binding server on {HOST}:{PORT}: {e}")
+        return
 
-    log_callback(f"Server running on {HOST}:{PORT}")
+    server.listen()
+    log_callback(f"Secure server running on {HOST}:{PORT} (LAN)")
 
     def broadcast(message):
         for c in list(clients.keys()):
@@ -78,10 +97,21 @@ def start_server(log_callback):
 
     def handle_client(conn, addr):
         try:
-            username = conn.recv(BUFFER_SIZE).decode()
+            # Step 1: Password authentication
+            conn.send("Enter server password:".encode())
+            pw = conn.recv(BUFFER_SIZE).decode().strip()
+            if pw != PASSWORD:
+                conn.send("❌ Wrong password. Connection closed.".encode())
+                conn.close()
+                log_callback(f"Rejected connection from {addr} (wrong password)")
+                return
+
+            # Step 2: Get username
+            conn.send("Password accepted. Enter your username:".encode())
+            username = conn.recv(BUFFER_SIZE).decode().strip()
             clients[conn] = username
 
-            # Send chat history
+            # Step 3: Send chat history
             for sender, content, reply_to, ts in load_history():
                 prefix = f"[{ts}] {sender}:"
                 if reply_to:
@@ -92,6 +122,7 @@ def start_server(log_callback):
             broadcast(f"[SERVER] 🟢 {username} joined the chat")
             log_callback(f"{username} connected from {addr}")
 
+            # Step 4: Main loop
             while server_running:
                 raw = conn.recv(BUFFER_SIZE).decode()
                 if not raw:
@@ -115,10 +146,16 @@ def start_server(log_callback):
             name = clients.pop(conn, "Unknown")
             conn.close()
             broadcast(f"[SERVER] 🔴 {name} left the chat")
+            log_callback(f"{name} disconnected from {addr}")
 
+    # Accept clients
     while True:
-        conn, addr = server.accept()
-        threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
+        try:
+            conn, addr = server.accept()
+            threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
+        except Exception as e:
+            log_callback(f"Server accept error: {e}")
+            break
 
 # ================== CLIENT ================== #
 class ChatClient:
@@ -126,8 +163,16 @@ class ChatClient:
         self.username = username
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((host, PORT))
-        self.sock.send(username.encode())
         self.message_callback = message_callback
+
+        # Step 1: Send password
+        self.sock.recv(BUFFER_SIZE)  # "Enter server password:"
+        self.sock.send(PASSWORD.encode())
+
+        # Step 2: Send username
+        self.sock.recv(BUFFER_SIZE)  # "Password accepted. Enter username:"
+        self.sock.send(username.encode())
+
         threading.Thread(target=self.listen, daemon=True).start()
 
     def listen(self):
@@ -163,11 +208,10 @@ tb.Label(login, text="Username").pack()
 user_entry = tb.Entry(login)
 user_entry.pack(fill=tk.X, pady=5)
 
-tb.Label(login, text="Server IP (LAN / WAN)").pack()
+tb.Label(login, text="Server IP (LAN)").pack()
 ip_entry = tb.Entry(login)
-ip_entry.insert(0, "127.0.0.1")
+ip_entry.insert(0, HOST)
 ip_entry.pack(fill=tk.X, pady=5)
-
 
 def join_chat():
     global username, server_ip, client
@@ -178,7 +222,6 @@ def join_chat():
         chat.pack(fill=tk.BOTH, expand=True)
         client = ChatClient(username, server_ip, display_message)
         display_message(f"[SYSTEM] Connected as {username}")
-
 
 tb.Button(login, text="Join Chat", bootstyle="success", command=join_chat).pack(pady=15)
 
@@ -198,7 +241,6 @@ entry_frame.pack(fill=tk.X, padx=10, pady=5)
 msg_entry = tb.Entry(entry_frame)
 msg_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
 
-
 def send_message():
     global reply_target
     text = msg_entry.get().strip()
@@ -208,9 +250,7 @@ def send_message():
         reply_label.config(text="")
         msg_entry.delete(0, tk.END)
 
-
 msg_entry.bind("<Return>", lambda e: send_message())
-
 
 def on_click(event):
     global reply_target
@@ -219,19 +259,17 @@ def on_click(event):
     reply_target = line
     reply_label.config(text=f"Replying to: {line[:50]}...")
 
-
 def display_message(msg):
     chat_box.text.configure(state="normal")
     chat_box.text.insert("end", msg + "\n")
     chat_box.text.see("end")
     chat_box.text.configure(state="disabled")
 
-
 chat_box.text.bind("<Button-1>", on_click)
 
 tb.Button(entry_frame, text="Send", bootstyle="primary", command=send_message).pack(side=tk.RIGHT)
 
 # ---------- START SERVER THREAD ---------- #
-threading.Thread(target=start_server, args=(display_message,), daemon=True).start()
+threading.Thread(target=start_secure_server, args=(display_message,), daemon=True).start()
 
 app.mainloop()
