@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/yourrepo.svg?style=social&label=Stars)](https://github.com/yourusername/yourrepo/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/rogers-cyber/python-tiny-tools.svg?style=social&label=Stars)](https://github.com/rogers-cyber/python-tiny-tools/stargazers)
 
 A Python-based **real-time collaborative text editor** with diff-based updates, floating colored cursors, and username labels — designed to feel like Google Docs. Built using `ttkbootstrap` for a modern **Flatly theme**.
 
@@ -17,20 +17,6 @@ A Python-based **real-time collaborative text editor** with diff-based updates, 
 - Efficient and scalable for hundreds of users.
 - Modern, sleek **Flatly theme** via `ttkbootstrap`.
 - Works cross-platform: **Windows, macOS, Linux**.
-
----
-
-## 📸 Screenshots
-
-**Single Client Editing:**
-
-![Editor Screenshot](screenshots/editor_single.png)
-
-**Multiple Users Collaborative View:**
-
-![Editor Screenshot Multiple Users](screenshots/editor_multi.png)
-
-*Note: Replace the above image paths with your actual screenshots in `screenshots/` folder.*
 
 ---
 
