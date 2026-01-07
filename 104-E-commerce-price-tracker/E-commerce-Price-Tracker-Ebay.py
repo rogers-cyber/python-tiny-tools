@@ -10,6 +10,18 @@ from tkinter import filedialog, scrolledtext
 from tkinterdnd2 import TkinterDnD, DND_FILES
 from urllib.parse import urlparse
 
+from urllib.parse import urlparse
+
+ALLOWED_HOSTS = {"www.ebay.com", "ebay.com"}
+
+def is_allowed_ebay_url(url):
+    try:
+        parsed = urlparse(url)
+        hostname = parsed.hostname.lower() if parsed.hostname else ""
+        return hostname in ALLOWED_HOSTS
+    except Exception:
+        return False
+
 # =================== Utility Functions ===================
 def resource_path(file_name):
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
@@ -31,15 +43,17 @@ def fetch_price(url):
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
         # Clean eBay URLs
-        if "ebay.com" in url:
+        if is_allowed_ebay_url(url):
             url = clean_ebay_url(url)
+        else:
+            return "Error: URL not allowed"
 
         resp = requests.get(url, headers=headers, timeout=10)
         resp.raise_for_status()
         soup = BeautifulSoup(resp.text, "html.parser")
 
         # ---------------- eBay ----------------
-        if "ebay.com" in url:
+        if is_allowed_ebay_url(url):
             selectors = [
                 'span[itemprop="price"]',  # auction
                 'span#prcIsum',            # buy-it-now
