@@ -1,0 +1,101 @@
+EmployeeID,Name,Age,JobRole,MonthlyIncome,Attrition
+E0001,Joanne Price,27,Laboratory Technician,12412,No
+E0002,Robert Bash,45,Healthcare Representative,4347,No
+E0003,Leslie Andino,37,Laboratory Technician,8723,No
+E0004,Donna Wilson,53,Healthcare Representative,5537,Yes
+E0005,James Villegas,27,Laboratory Technician,12482,No
+E0006,Lawrence Eckard,38,Manager,5805,No
+E0007,Ashly Perotti,22,Laboratory Technician,11067,No
+E0008,Ruby Maki,32,Research Scientist,14037,No
+E0009,Armando Stuer,48,Laboratory Technician,11757,No
+E0010,James Waitman,43,Laboratory Technician,10980,No
+E0011,Dennis Alvaro,22,Healthcare Representative,10264,No
+E0012,Ruth Watson,30,Software Engineer,3576,No
+E0013,Frances Collins,27,Laboratory Technician,11658,No
+E0014,John Frizzell,29,Research Scientist,3804,No
+E0015,Terry Catledge,49,Healthcare Representative,3031,No
+E0016,George Ulbrich,24,Sales Executive,5474,No
+E0017,Carolyn Haywood,29,Software Engineer,6723,No
+E0018,Mario Mercier,29,Manufacturing Director,6933,No
+E0019,Darrell Nordstrom,29,Research Scientist,8380,No
+E0020,Gino Finn,34,Manufacturing Director,12898,No
+E0021,Jocelyn Reeves,54,Human Resources,5414,No
+E0022,Anna Benjamin,51,Laboratory Technician,3632,No
+E0023,Scott Stough,41,Research Scientist,11078,No
+E0024,Emanuel Quon,60,Human Resources,14524,Yes
+E0025,William Dinger,35,Human Resources,9122,No
+E0026,Ann Hall,29,Laboratory Technician,7532,No
+E0027,Faye Bilski,42,Manufacturing Director,9043,No
+E0028,Ross White,38,Sales Executive,14964,No
+E0029,Malcolm Lott,38,Software Engineer,14784,Yes
+E0030,Thaddeus Ziglar,28,Manager,8094,No
+E0031,Manuel Hanna,24,Laboratory Technician,4587,No
+E0032,Dana Hamill,53,Software Engineer,10653,No
+E0033,Gloria Llewellyn,44,Healthcare Representative,11462,No
+E0034,William Weiss,31,Manager,11397,Yes
+E0035,Crystal Mcqueeney,24,Laboratory Technician,8267,No
+E0036,Jimmy Lotti,56,Sales Executive,13478,No
+E0037,John Thompson,52,Research Scientist,3824,No
+E0038,Scott Andrews,35,Manufacturing Director,10710,No
+E0039,Amy Santiago,60,Human Resources,13076,No
+E0040,Gary Julien,46,Healthcare Representative,4608,Yes
+E0041,Nicholas Gann,55,Sales Executive,13747,No
+E0042,Saul Smith,44,Manager,4327,No
+E0043,Ed Vega,54,Software Engineer,14482,No
+E0044,Carl Campos,57,Manufacturing Director,6416,No
+E0045,Dawn Doleman,24,Sales Executive,10177,No
+E0046,Bobby Smith,23,Research Scientist,14579,No
+E0047,Pauline Hook,49,Human Resources,5705,No
+E0048,Andrew Barringer,50,Manager,3598,No
+E0049,Mark Hadley,44,Laboratory Technician,14133,No
+E0050,Phyliss Romanowski,49,Human Resources,5250,No
+E0051,Charlotte Thomas,31,Manager,11855,No
+E0052,Christine Williams,42,Manager,4224,No
+E0053,Lori Druetta,57,Manager,8464,No
+E0054,Katherine Hosler,26,Sales Executive,13439,No
+E0055,Albert Polanco,41,Healthcare Representative,12424,No
+E0056,Charles Oliver,28,Sales Executive,6968,Yes
+E0057,Marian Henry,35,Sales Executive,9037,Yes
+E0058,Pedro Wortham,25,Manufacturing Director,11801,No
+E0059,Linda Dorsey,28,Manufacturing Director,4980,No
+E0060,Tracey Obrien,33,Healthcare Representative,3698,No
+E0061,Aimee Reyes,30,Software Engineer,5717,No
+E0062,William Garcia,57,Research Scientist,12926,No
+E0063,Shelly Tookes,50,Sales Executive,8862,No
+E0064,Virginia Ray,39,Laboratory Technician,7571,No
+E0065,Natasha Redmon,56,Manager,6273,No
+E0066,Cathy Geathers,45,Manager,10504,No
+E0067,Janine Jordan,27,Healthcare Representative,9414,No
+E0068,Gerald Ross,23,Manager,8658,No
+E0069,John Ely,46,Sales Executive,9573,No
+E0070,Eric Chambers,25,Research Scientist,7967,No
+E0071,Angela Staley,43,Software Engineer,9510,No
+E0072,Nicholas Newsome,26,Human Resources,12877,No
+E0073,Richard Phillips,36,Healthcare Representative,5189,No
+E0074,Leroy Sistrunk,25,Healthcare Representative,13657,No
+E0075,Trenton Onisick,27,Laboratory Technician,10973,No
+E0076,Ruben Lutwin,44,Healthcare Representative,6315,No
+E0077,Kim Jeansonne,26,Healthcare Representative,3907,No
+E0078,Sarah Neil,25,Research Scientist,8192,No
+E0079,Virginia Rogers,51,Research Scientist,8329,No
+E0080,Mary Okeefe,51,Sales Executive,4217,No
+E0081,Craig Jimenez,45,Software Engineer,13835,No
+E0082,Joshua Hayslip,38,Sales Executive,6904,No
+E0083,Antonio Coburn,48,Manufacturing Director,3684,No
+E0084,Warren Smith,29,Laboratory Technician,14586,No
+E0085,Don Reyna,55,Healthcare Representative,5231,No
+E0086,James Lee,52,Manager,4144,No
+E0087,Phillip Ali,36,Healthcare Representative,5531,No
+E0088,Steven Martini,35,Manufacturing Director,3909,No
+E0089,Richard Davenport,48,Laboratory Technician,3972,No
+E0090,Louise Ogle,60,Manufacturing Director,5292,No
+E0091,Awilda Sowers,47,Manufacturing Director,8752,No
+E0092,Allyson Welch,39,Software Engineer,14080,No
+E0093,Kyle Gomez,33,Research Scientist,14234,No
+E0094,Rafael Rivers,37,Sales Executive,7926,No
+E0095,Lynda Benson,46,Sales Executive,8230,No
+E0096,Steven Barnes,38,Sales Executive,7378,Yes
+E0097,Kevin Vasquez,52,Software Engineer,4977,No
+E0098,Emily Fuller,37,Research Scientist,4924,No
+E0099,Sheryl Guy,44,Manufacturing Director,9454,No
+E0100,Oliver Branch,41,Software Engineer,7026,No
