@@ -1,0 +1,4 @@
+Subject: Invoice details
+Body: Let's meet tomorrow at 10 AM to discuss the project.
+From: sender14@example.com
+To: receiver@example.com

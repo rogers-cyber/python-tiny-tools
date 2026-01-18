@@ -1,0 +1,4 @@
+Subject: Invoice details
+Body: Please see attached the report for last week.
+From: sender1@example.com
+To: receiver@example.com

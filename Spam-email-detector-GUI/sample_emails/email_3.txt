@@ -1,0 +1,4 @@
+Subject: Free money for you
+Body: Congratulations! You are selected for a special prize.
+From: sender3@example.com
+To: receiver@example.com

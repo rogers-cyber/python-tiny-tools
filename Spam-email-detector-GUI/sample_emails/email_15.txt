@@ -1,0 +1,4 @@
+Subject: Lottery winner notification
+Body: You have won a lottery prize. Reply immediately!
+From: sender15@example.com
+To: receiver@example.com

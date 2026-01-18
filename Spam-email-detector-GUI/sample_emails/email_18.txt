@@ -1,0 +1,4 @@
+Subject: Urgent: Claim your prize
+Body: Congratulations! You are selected for a special prize.
+From: sender18@example.com
+To: receiver@example.com

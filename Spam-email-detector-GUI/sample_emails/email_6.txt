@@ -1,0 +1,4 @@
+Subject: Credit card offer
+Body: Congratulations! You are selected for a special prize.
+From: sender6@example.com
+To: receiver@example.com

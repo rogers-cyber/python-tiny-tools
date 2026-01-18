@@ -1,0 +1,4 @@
+Subject: Lottery winner notification
+Body: Congratulations! You are selected for a special prize.
+From: sender7@example.com
+To: receiver@example.com

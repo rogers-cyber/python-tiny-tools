@@ -1,0 +1,4 @@
+Subject: Lottery winner notification
+Body: Click here to claim your free money instantly!
+From: sender10@example.com
+To: receiver@example.com

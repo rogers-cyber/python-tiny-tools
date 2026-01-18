@@ -1,0 +1,4 @@
+Subject: Family photos
+Body: Family gathering this weekend at my place.
+From: sender2@example.com
+To: receiver@example.com
