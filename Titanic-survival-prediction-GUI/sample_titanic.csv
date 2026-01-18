@@ -1,0 +1,21 @@
+PassengerId,Name,Pclass,Sex,Age,SibSp,Parch,Fare,Survived
+1,Passenger 1,2,male,19.4,2,2,105.55,0
+2,Passenger 2,3,female,78.9,2,1,198.74,0
+3,Passenger 3,2,male,12.1,1,0,31.96,1
+4,Passenger 4,3,female,18.4,1,2,132.87,1
+5,Passenger 5,2,female,34.8,0,1,124.86,0
+6,Passenger 6,3,female,59.2,0,2,115.62,0
+7,Passenger 7,3,male,38.1,1,0,66.18,0
+8,Passenger 8,3,female,6.9,2,2,190.49,0
+9,Passenger 9,2,male,14.3,1,0,93.68,0
+10,Passenger 10,1,female,64.4,1,2,11.58,0
+11,Passenger 11,2,female,73.1,1,1,30.07,1
+12,Passenger 12,3,male,56.3,2,2,100.9,1
+13,Passenger 13,1,male,53.1,0,1,77.83,1
+14,Passenger 14,2,female,34.2,0,1,122.84,1
+15,Passenger 15,1,female,39.2,1,0,103.48,0
+16,Passenger 16,3,female,20.6,1,1,119.59,1
+17,Passenger 17,2,female,16.1,2,1,145.78,0
+18,Passenger 18,3,female,50.7,0,1,107.24,1
+19,Passenger 19,2,male,65.3,1,2,163.2,1
+20,Passenger 20,3,male,35.3,0,0,124.24,1
